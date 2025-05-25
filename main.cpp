@@ -1,9 +1,9 @@
-/*! @file main
+/*! @file main.cpp
     @brief Main function for the program
     @author Emanuele Negrino and Carlo Toscano
 */ 
 
-#include "menu.h"
+#include "Interface.h"
 #include "CPower.h"
 #include "CLogarithmic.h"
 #include "CPolynomial.h"
@@ -11,24 +11,20 @@
 using namespace std;
 
 int main() {
-    // Clear the screen
-    clearScreen();
     
-    while (true) {
-        Menu menu;
-        menu.displayMenu();
+    Menu menu;
+    FunctionList functionList;
+
+    int choice = 0;
+
+    do {
+
+        menu.display();
         
         // Get user choice
-        int choice = menu.getUserChoice();
+        choice = menu.getUserChoice();
         
-        // Handle user choice
-        if (manageUserChoice(choice) == 0) {
-            break; // Exit the loop if the user chooses to exit
-        }
-        
-        // Clear the input buffer before the next iteration
-        clearInputBuffer();
-    }
+    } while (manageUserChoice(choice, functionList)); 
     
     return 0;
 }
